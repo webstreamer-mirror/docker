@@ -5,13 +5,7 @@ LABEL maintainer="Mingyi Zhang <mingyi.z@outlook.com>"
 ENV NODEJS_HOME=/usr/local/lib/nodejs/node-v10.15.1/bin \
     PATH=$NODEJS_HOME:$PATH
 
-RUN VERSION=v10.15.1 \
-    && DISTRO=linux-x64 \
-    && sudo mkdir /usr/local/lib/nodejs \
-    && sudo curl -O https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.xz \
-    && sudo tar -xJvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs \
-    && sudo mv /usr/local/lib/nodejs/node-$VERSION-$DISTRO /usr/local/lib/nodejs/node-$VERSION \
-    && PYTHON2_HOME=/opt/gyp/python2 \
+RUN PYTHON2_HOME=/opt/python2 \
     && PYTHON2_VERSION=2.7.15 \
     && PYTHON2_TARBALL=https://www.python.org/ftp/python/${PYTHON2_VERSION}/Python-${PYTHON2_VERSION}.tgz \
     && PIP_VERSION=19.0.2 \
@@ -20,6 +14,7 @@ RUN VERSION=v10.15.1 \
     && SETUPTOOLS_TARBALL=https://files.pythonhosted.org/packages/c2/f7/c7b501b783e5a74cf1768bc174ee4fb0a8a6ee5af6afa92274ff964703e0/setuptools-${SETUPTOOLS_VERSION}.zip \
     && apt-get -qq update \
     && apt-get -qq install unzip \
+    && sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash \
     && cd /tmp \
     && wget https://github.com/creationix/nvm/archive/v0.34.0.tar.gz \
     && wget ${PYTHON2_TARBALL} \
