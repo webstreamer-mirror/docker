@@ -2,6 +2,8 @@ FROM webstreamer/gcc54
 
 LABEL maintainer="Mingyi Zhang <mingyi.z@outlooke.com>"
 
+ENV PYENV_ROOT=/opt/pyenv \
+    PATH=/opt/pyenv/shims:${PATH}
 
 RUN wget --no-check-certificate --quiet -O /tmp/pyenv-installer https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer \
     && chmod +x /tmp/pyenv-installer \
